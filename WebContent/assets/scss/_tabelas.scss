@@ -1,0 +1,39 @@
+table {
+    width: 100%;
+
+    &, tr, th, td {
+        border-collapse: collapse;
+    }
+
+    tr {
+        td, th {
+            text-align: left;
+            padding: .8rem 1.2rem;
+            border-bottom: 1px solid rgba(0, 0, 0, .12);
+        }
+    }
+
+    thead {
+        th, td {
+            color: rgba(0, 0, 0, .54);
+            font-size: 1.2rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+    }
+
+    tbody {
+        tr.active {
+            background: $grey-100;
+        }
+    }
+
+    &.selectable {
+        tbody {
+            tr:hover {
+                background: $grey-200;
+            }
+        }
+    }
+}
+

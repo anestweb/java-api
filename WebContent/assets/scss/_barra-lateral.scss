@@ -1,0 +1,32 @@
+.sidebar-menu {
+    margin: 1.6rem 0;
+    font-weight: 500;
+
+    a {
+        display: block;
+        color: rgba(0, 0, 0, .27);
+        text-decoration: none;
+        text-align: center;
+        padding: 2.4rem 3.2rem;
+        transition: all 250ms;
+
+        & > span {
+            display: block;
+            text-transform: uppercase;
+        }
+
+        & > i:before {
+            // O código do flaticon apresenta mal uso do :before.
+            font-size: 4.25rem;
+            margin: 0;
+        }
+
+        &:hover, &:focus { color: rgba(0, 0, 0, .54); }
+        &:active { color: rgba(0, 0, 0, .87); }
+
+        &.active {
+            background: $grey-200;
+            color: $colorPrimaryLight;
+        }
+    }
+}

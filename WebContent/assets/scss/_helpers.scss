@@ -1,0 +1,15 @@
+.right.floated { float: right; }
+.left.floated { float: left; }
+
+.center.aligned { text-align: center; }
+.right.aligned { text-align: right; }
+.left.aligned { text-align: left; }
+
+p.secondary { color: rgba(0, 0, 0, .54); }
+p.secondary.inverse { color: rgba(255, 255, 255, .54); }
+
+.allcaps { text-transform: uppercase; }
+
+.halfwidth { max-width: 50%; width: 50%; }
+
+.hidden { visibility: hidden; position: absolute; top: -300rem; left: -300rem; }

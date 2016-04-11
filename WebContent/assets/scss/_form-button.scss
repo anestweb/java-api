@@ -1,0 +1,86 @@
+
+a.button {
+    text-decoration: none;
+}
+
+button,
+.button {
+    display: inline-block;
+    position: relative;
+    background: $grey-100;
+    font-weight: 500;
+    color: rgba(0, 0, 0, .54);
+    border: none;
+    padding: .95rem 1.6rem;
+    margin: .4rem;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    border-radius: .2rem;
+    box-shadow: 0 .1rem .3rem 0 rgba(0, 0, 0, .0),
+                0 .1rem .3rem 0 rgba(0, 0, 0, .0);
+    transition: all .3s;
+
+    &.primary { background: $colorAccentLight; }
+
+    &.raised {
+        box-shadow: 0 .1rem .3rem 0 rgba(0, 0, 0, .12),
+                    0 .1rem .3rem 0 rgba(0, 0, 0, .24);
+    }
+
+    &.flat {
+        background: transparent;
+    }
+
+    &:first-child {
+        margin-left: 0;
+    }
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: auto;
+        height: auto;
+        background: rgba(0, 0, 0, .12);
+        opacity: 0;
+        border-radius: .2rem;
+        transition: opacity .3s;
+    }
+
+    &:hover, &:focus {
+        box-shadow: 0 .1rem .3rem 0 rgba(0, 0, 0, .12),
+                    0 .1rem .3rem 0 rgba(0, 0, 0, .24);
+        &:before {
+            opacity: .5;
+        }
+    }
+
+    &:active {
+        box-shadow: 0 .2rem .6rem 0 rgba(0, 0, 0, .12),
+                    0 .2rem .6rem 0 rgba(0, 0, 0, .24);
+        &:before {
+            opacity: 1;
+        }
+    }
+
+    &.inverse {
+        color: rgba(255, 255, 255, .87);
+
+        &:before { background: rgba(255, 255, 255, .12); }
+        &:hover, &:focus { background: $grey-50; color: rgba(0, 0, 0, .87); }
+    }
+
+    &.disabled, &:disabled {
+        color: rgba(0, 0, 0, .26);
+        background: rgba(0, 0, 0, .12);
+        box-shadow: none;
+
+        &:before {
+            opacity: 0;
+        }
+    }
+}

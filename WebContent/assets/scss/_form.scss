@@ -1,0 +1,74 @@
+input, button, select, .button, label {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1;
+    outline: none;
+}
+
+@import '_form-button';
+
+.input {
+    position: relative;
+    clear: both;
+    margin: 1.6rem 0 2.4rem;
+
+    & > input[type="text"],
+    & > input[type="email"],
+    & > input[type="file"],
+    & > input[type="password"],
+    & > input[type="tel"],
+    & > input[type="search"],
+    & > input[type="date"],
+    & > input[type="number"],
+    & > input[type="datetime"] {
+        display: block;
+        width: 100%;
+        border: none;
+        border-width: 0 0 .1rem 0;
+        padding: .96rem 0 .8rem;
+        line-height: 1.2;
+        margin-bottom: .8rem;
+        font-size: 1.6rem;
+        box-shadow: inset 0 -.1rem 0 0 rgba(0, 0, 0, .12);
+        transition: all .3s;
+
+        & + label {
+            position: absolute;
+            top: .96rem;
+            left: 0;
+            font-size: 1.6rem;
+            line-height: 1.2;
+            color: rgba(0, 0, 0, .27);
+            transition: all .3s;
+            user-select: none;
+        }
+
+        &:focus {
+            box-shadow: inset 0 -.2rem 0 0 $colorAccentLight;
+
+            & + label { color: rgba(0, 0, 0, .54); }
+            &:invalid { box-shadow: inset 0 -.2rem 0 0 $colorPrimary; }
+        }
+
+        &.hasContent {
+            & + label {
+                top: -.4rem;
+                font-size: 1rem;
+                text-transform: uppercase;
+                color: rgba(0, 0, 0, .54);
+                display: block;
+                width: 100%;
+            }
+        }
+
+        &::selection { background: rgba($colorAccentLight, .5) }
+    }
+}
+
+.actions {
+    clear: both;
+    display: block;
+    margin: 2.4rem 0;
+    text-align: right;
+}

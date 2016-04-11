@@ -1,0 +1,85 @@
+#wrapper-all {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; // default
+    align-items: stretch;
+    align-content: stretch;
+    min-height: 100%;
+
+    & > header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: auto;
+        width: auto;
+        display: block;
+        box-sizing: border-box;
+        box-shadow: 0 .1rem .2rem 0 rgba(0, 0, 0, .12),
+                    0 .1rem .2rem 0 rgba(0, 0, 0, .24);
+        z-index: 900;
+
+        background: $colorPrimaryDark;
+        color: rgba(255, 255, 255, .87);
+        font-size: 1.3rem;
+        font-weight: 500;
+        line-height: 1;
+        padding: 1.6rem;
+
+        img.applogo {
+            max-height: 3rem;
+        }
+
+        & > .options {
+            float: right;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: center;
+            align-content: center;
+
+            & > .item {
+                display: block;
+                padding: 0 .8rem;
+
+                &:last-child { padding-right: 0; }
+
+                &.userinfo {
+                    text-align: right;
+                }
+
+                & > .button, & > button {
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    #wrapper-main {
+        margin-top: 6.4rem;
+        flex-grow: 1;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: stretch;
+        align-content: stretch;
+
+        & > .sidebar {
+            background: rgba(0, 0, 0, .12);
+
+            @media (max-width: 768px) {
+                display: none;
+            }
+        }
+
+        & > .page-content {
+            padding: 2.8rem 5.6rem 5.6rem;
+            flex-grow: 1;
+
+            @media (max-width: 768px) {
+                padding: 2.8rem 1.6rem;
+            }
+        }
+    }
+}

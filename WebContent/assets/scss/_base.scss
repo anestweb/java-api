@@ -1,0 +1,30 @@
+html, body {
+    height: 100%;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+
+    color: rgba(0, 0, 0, .87);
+
+    line-height: 2.4rem;
+}
+
+a {
+    color: $colorAccentDark;
+}
+
+p {
+    text-align: justify;
+}
+
+.pace { z-index: 1900; }

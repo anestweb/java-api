@@ -1,1 +1,3 @@
-/build/
+build/
+nbproject/
+koala-config.json
