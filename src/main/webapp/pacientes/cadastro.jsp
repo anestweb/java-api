@@ -14,7 +14,9 @@
 
     <p class="error">${requestScope.error}</p>
 
-    <form action="./pacientes/novo" method="post" enctype="application/x-www-form-urlencoded">
+    <form action="./pacientes/novo" method="post"
+          enctype="application/x-www-form-urlencoded"
+          accept-charset="utf-8">
         <div class="form">
             <div class="input">
                 <input type="text" id="y1" name="nome_completo" value="${param.nome_completo}" required>
@@ -29,7 +31,7 @@
             </div>
 
             <div class="input">
-                <select name="sexo" id="sexo">
+                <select name="sexo" id="sexo" required>
                     <option value=""></option>
                     <option value="M">Masculino</option>
                     <option value="F">Feminino</option>
@@ -45,13 +47,13 @@
 
             <div class="input">
                 <input type="text" id="y4" name="cpf" value="${param.cpf}"
-                       pattern="^(?:[0-9]{3}\.){2}[0-9]{3}\-[0-9]{2}$" required>
+                       pattern="^(?:[0-9]{3}\.?){2}[0-9]{3}\-?[0-9]{2}$">
                 <label for="y4">CPF</label>
+                
             </div>
 
             <div class="input">
-                <input type="text" id="y5" name="rg" value="${param.rg}"
-                       pattern="^\d{1,3}(?:\.\d{3})*$">
+                <input type="text" id="y5" name="rg" value="${param.rg}">
                 <label for="y5">RG</label>
             </div>
         </div>

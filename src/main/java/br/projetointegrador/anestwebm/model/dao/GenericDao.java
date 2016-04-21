@@ -30,7 +30,6 @@ public class GenericDao<T> implements Dao<T> {
         return this.session.createCriteria(this.persistentClass).list();
     }
 
-
     @Override
     public void salva(T t) {
         Transaction transaction = this.session.beginTransaction();

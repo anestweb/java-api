@@ -4,10 +4,9 @@ import br.projetointegrador.anestwebm.model.Paciente;
 import br.projetointegrador.anestwebm.model.dao.Dao;
 import br.projetointegrador.anestwebm.model.dao.GenericDao;
 import br.projetointegrador.anestwebm.model.dao.HibernateUtil;
+import br.projetointegrador.anestwebm.util.ValidatorUtils;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -15,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolationException;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
@@ -34,40 +34,29 @@ public class NovoPacienteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        Paciente paciente = new Paciente();
+
+        final Paciente paciente = new Paciente();
         paciente.setNomeCompleto(req.getParameter("nome_completo"));
+        paciente.setDataNascimento(req.getParameter("data_nascimento"));
+        paciente.setGenero(req.getParameter("sexo"));
+        paciente.setEmail(req.getParameter("email"));
         paciente.setCpf(req.getParameter("cpf").replaceAll("[^0-9]", ""));
         paciente.setRg(req.getParameter("rg").replaceAll("[^0-9]", ""));
 
         try {
-            // Gênero
-            paciente.setGenero(req.getParameter("sexo").charAt(0));
-
-            // Data de Nascimento
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            paciente.setDataNascimento(dateFormat.parse(req.getParameter("data_nascimento")));
-        } catch (EnumConstantNotPresentException ex) {
-            req.setAttribute("error", "Opção de gênero inválida.");
-        } catch (ParseException ex) {
-            req.setAttribute("error", "Erro na conversão da data de nascimento: " + ex.getMessage() + ".");
-        } finally {
-            if (req.getAttribute("error") == null) {
-                try {
-                    Session session = HibernateUtil.getSessionFactory().openSession();
-                    Dao<Paciente> pacienteDao = new GenericDao(session, Paciente.class);
-                    pacienteDao.salva(paciente);
-                    resp.sendRedirect(getServletContext().getContextPath() + "/pacientes");
-                } catch (HibernateException | IOException ex) {
-                    final String msg = "Não foi possível cadastrar o paciente: " + ex.getMessage() + ".";
-                    req.setAttribute("error", msg);
-                    Logger.getLogger(getClass().getName()).log(Level.SEVERE, msg, ex);
-                } finally {
-                    if (!resp.isCommitted()) {
-                        getServletContext().getRequestDispatcher("/pacientes/cadastro.jsp")
-                            .forward(req, resp);
-                    }
-                }
-            }
+            final Session session = HibernateUtil.getSessionFactory().openSession();
+            final Dao<Paciente> pacienteDao = new GenericDao(session, Paciente.class);
+            pacienteDao.salva(paciente);
+            resp.sendRedirect(getServletContext().getContextPath() + "/pacientes");
+        } catch (ConstraintViolationException ex) {
+            List<String> messages = ValidatorUtils.messagesFromConstraints(ex.getConstraintViolations());
+            req.setAttribute("validations", messages);
+            doGet(req, resp); // Reexibe o JSP
+        } catch (HibernateException | IOException ex) {
+            final String msg = "Não foi possível cadastrar o paciente: " + ex.getMessage() + ".";
+            req.setAttribute("error", msg);
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, msg, ex);
+            doGet(req, resp); // Reexibe o JSP
         }
     }
 

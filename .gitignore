@@ -3,3 +3,4 @@ nbproject/
 koala-config.json
 dist/
 .settings/
+target/
