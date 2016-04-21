@@ -1,41 +1,44 @@
 package br.projetointegrador.controller;
 
-import br.projetointegrador.DAO.DaoPacientesImpl;
-import br.projetointegrador.model.Pacientes;
+import br.projetointegrador.model.Paciente;
+import br.projetointegrador.model.dao.GenericDao;
+import br.projetointegrador.model.dao.HibernateUtil;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.hibernate.Session;
 
 /**
  *
  * @author Jonathan Souza <jonathan.ralison@gmail.com>
  */
-@WebServlet("/pacientes")
+@WebServlet({"/pacientes"})
 public class ListagemPacientesServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        List<Pacientes> pacientes = new ArrayList<>();
-
+        // Tenta recuperar a lista a partir do banco de dados.
+        List<Paciente> pacientes = new ArrayList();
         try {
-            pacientes = (new DaoPacientesImpl()).list();
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            pacientes = (new GenericDao(session, Paciente.class)).lista();
         } catch (Exception ex) {
-            Logger.getLogger(ListagemPacientesServlet.class.getName())
-                  .log(Level.SEVERE, "Falha ao recuperar lista de pacientes.", ex);
+            String msg = "Não foi possível carregar a listagem de pacientes.";
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, msg, ex);
         }
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/pacientes/listagem.jsp");
+        // Passa a lista para o JSP
         req.setAttribute("pacientes", pacientes);
-        dispatcher.forward(req, resp);
+        getServletContext().getRequestDispatcher("/pacientes/listagem.jsp")
+                .forward(req, resp);
     }
 
 }

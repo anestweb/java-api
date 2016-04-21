@@ -4,7 +4,7 @@
     Author     : Jonathan Souza <jonathan.ralison@gmail.com>
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/"%>
 <%@tag description="Layout Principal" pageEncoding="UTF-8"%>
 

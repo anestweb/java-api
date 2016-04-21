@@ -4,9 +4,11 @@
     Author     : Jonathan Souza <jonathan.ralison@gmail.com>
 --%>
 
+<%@page import="br.projetointegrador.model.Paciente"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="t" tagdir="/WEB-INF/tags/" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags/" %>
 
 <t:mainlayout>
 
@@ -37,13 +39,12 @@
                     <c:forEach items="${pacientes}" var="paciente">
                         <tr>
                             <td>${paciente.getNomeCompleto().toUpperCase()}</td>
-                            <td>${paciente.getDataNascimento()} (? anos)</td>
+                            <td>${paciente.getDataNascimento()} (${paciente.getIdade()} anos)</td>
                         </tr>
                     </c:forEach>
                 </c:otherwise>
             </c:choose>
         </tbody>
     </table>
-
 
 </t:mainlayout>
