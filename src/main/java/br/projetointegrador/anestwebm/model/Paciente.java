@@ -1,8 +1,9 @@
 package br.projetointegrador.anestwebm.model;
 
-import java.text.DateFormat;
+import br.projetointegrador.anestwebm.util.DateUtil;
+import br.projetointegrador.anestwebm.util.StringUtil;
+import java.io.Serializable;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
@@ -64,9 +65,19 @@ public class Paciente extends AbstractModel {
     private Profissional profissional;
 
     public static enum Genero {
-        MASCULINO,
-        FEMININO,
-        NAO_INFORMADO
+        MASCULINO('M'),
+        FEMININO('F'),
+        NAO_INFORMADO('O');
+
+        private final char opcao;
+
+        Genero(char opcao) {
+            this.opcao = opcao;
+        }
+
+        public char asChar() {
+            return this.opcao;
+        }
     }
 
     public Integer getId() {
@@ -82,15 +93,24 @@ public class Paciente extends AbstractModel {
     }
 
     public void setNomeCompleto(String nome_completo) {
-        this.nome_completo = nome_completo;
+        this.nome_completo = nome_completo.isEmpty() ? null : nome_completo;
     }
 
+    /**
+     * Retorna o CPF formatado.
+     * @return o cpf formatado.
+     */
     public String getCpf() {
-        return cpf;
+        return cpf != null ? StringUtil.formatCpf(cpf) : cpf;
     }
 
+    /**
+     * Armazena apenas os números do cpf informado.
+     * @param cpf 
+     */
     public void setCpf(String cpf) {
-        this.cpf = cpf;
+        cpf = cpf.replaceAll("[^0-9]", "");
+        this.cpf = cpf.isEmpty() ? null : cpf;
     }
 
     public String getRg() {
@@ -98,7 +118,7 @@ public class Paciente extends AbstractModel {
     }
 
     public void setRg(String rg) {
-        this.rg = rg;
+        this.rg = rg.isEmpty() ? null : rg;
     }
 
     public Genero getGenero() {
@@ -112,6 +132,8 @@ public class Paciente extends AbstractModel {
     public void setGenero(String genero) {
         if (genero != null && genero.length() > 0) {
             setGenero(genero.charAt(0));
+        } else {
+            setGenero((Genero) null);
         }
     }
 
@@ -139,11 +161,17 @@ public class Paciente extends AbstractModel {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email.isEmpty() ? null : email;
     }
 
-    public Date getDataNascimento() {
-        return data_nascimento;
+    /**
+     * Retorna a data de nascimento como string no padrão brasileiro.
+     * @return 
+     */
+    public String getDataNascimento() {
+        return data_nascimento != null
+                ? StringUtil.dateToString(data_nascimento)
+                : null;
     }
 
     public void setDataNascimento(Date data_nascimento) {
@@ -152,21 +180,14 @@ public class Paciente extends AbstractModel {
 
     public void setDataNascimento(String data_nascimento) {
         try {
-            final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            this.data_nascimento = dateFormat.parse(data_nascimento);
+            this.data_nascimento = StringUtil.stringToDate(data_nascimento);
         } catch (ParseException ex) {
             this.data_nascimento = null;
         }
     }
 
     public int getIdade() {
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(this.data_nascimento);
-        final LocalDate born = LocalDate.of(cal.get(Calendar.YEAR),
-                cal.get(Calendar.MONTH),
-                cal.get(Calendar.DAY_OF_MONTH));
-        final LocalDate today = LocalDate.now();
-        return (int) ChronoUnit.YEARS.between(born, today);
+        return DateUtil.ageFromDate(data_nascimento);
     }
 
     public Profissional getProfissional() {

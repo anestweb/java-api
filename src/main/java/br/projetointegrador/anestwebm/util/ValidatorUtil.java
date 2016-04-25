@@ -9,7 +9,7 @@ import javax.validation.ConstraintViolation;
  *
  * @author Jonathan Souza <jonathan.ralison@gmail.com>
  */
-public class ValidatorUtils {
+public class ValidatorUtil {
 
     public static List<String> messagesFromConstraints(Set<ConstraintViolation<?>> violations) {
         List<String> messages = new ArrayList<>();

@@ -22,7 +22,7 @@ public class GenericDao<T> implements Dao<T> {
 
     @Override
     public T buscaPorId(Serializable id) {
-        return this.session.load(this.persistentClass, id);
+        return (T) this.session.load(this.persistentClass, id);
     }
 
     @Override
@@ -40,6 +40,7 @@ public class GenericDao<T> implements Dao<T> {
     @Override
     public void remove(T t) {
         Transaction transaction = this.session.beginTransaction();
+        transaction.setTimeout(2);
         this.session.delete(t);
         transaction.commit();
     }

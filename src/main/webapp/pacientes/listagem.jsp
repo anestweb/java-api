@@ -22,13 +22,15 @@
             <tr>
                 <th>Nome</th>
                 <th>Data de Nascimento</th>
+                <th class="">Gênero</th>
+                <th class="compact">Opções</th>
             </tr>
         </thead>
         <tbody>
             <c:choose>
                 <c:when test="${pacientes.isEmpty()}">
                     <tr>
-                        <td colspan="2">
+                        <td colspan="4">
                             Não há paciente cadastrado para esta listagem.
                         </td>
                     </tr>
@@ -38,6 +40,14 @@
                         <tr>
                             <td>${paciente.getNomeCompleto().toUpperCase()}</td>
                             <td>${paciente.getDataNascimento()} (${paciente.getIdade()} anos)</td>
+                            <td>${paciente.getGenero()}</td>
+                            <td class="nowrap">
+                                <a href="./pacientes/edicao?id=${paciente.getId()}"
+                                   class="compact button"><i class="fa fa-pencil fa-fw"></i> editar</a>
+                                <a href="./pacientes/exclusao?id=${paciente.getId()}"
+                                   data-confirm="Remover o paciente ${paciente.getNomeCompleto()}?"
+                                   class="compact button"><i class="fa fa-times fa-fw"></i></a>
+                            </td>
                         </tr>
                     </c:forEach>
                 </c:otherwise>

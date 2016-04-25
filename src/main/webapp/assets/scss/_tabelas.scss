@@ -8,8 +8,16 @@ table {
     tr {
         td, th {
             text-align: left;
-            padding: .8rem 1.2rem;
+            padding: .7rem 1.2rem;
             border-bottom: 1px solid rgba(0, 0, 0, .12);
+
+            &.compact {
+                width: 1%;
+            }
+
+            &.nowrap {
+                white-space: nowrap;
+            }
         }
     }
 

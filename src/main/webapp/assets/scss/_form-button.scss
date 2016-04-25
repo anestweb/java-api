@@ -21,6 +21,14 @@ button,
                 0 .1rem .3rem 0 rgba(0, 0, 0, .0);
     transition: all .3s;
 
+    &.compact {
+        padding: .8rem;
+        font-size: 1rem;
+        margin: 0 0 0 .5rem;
+
+        &:first-child { margin: 0; }
+    }
+
     &.primary { background: $colorAccentLight; }
 
     &.raised {

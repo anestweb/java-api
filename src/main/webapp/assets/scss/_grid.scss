@@ -1,0 +1,19 @@
+
+$gutter: .8rem;
+$cols: 16;
+
+.flex-row {
+    display: flex;
+    flex-flow: row wrap;
+
+    @for $i from 1 through $cols {
+        & > .grid-#{$i} {
+            flex-grow: $i / $cols;
+            flex-shrink: 0;
+            margin: .8rem ($gutter / 2);
+
+            &:first-child { margin-left: 0; }
+            &:last-child { margin-right: 0; }
+        }
+    }
+}
