@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
@@ -18,6 +19,7 @@ public class Patologia extends AbstractModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank(message = "A descrição da patologia não pode ficar em branco.")
     @Column(length = 255, nullable = false)
     private String descricao;
 
