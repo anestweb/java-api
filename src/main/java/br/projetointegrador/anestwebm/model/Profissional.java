@@ -10,6 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
@@ -22,15 +26,20 @@ public class Profissional extends AbstractModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(length = 6, unique = true, nullable = false)
+    @Pattern(regexp = "^[0-9]{4,6}/[A-Z]{2}$", message = "Informe o CRM no formato 9999/UF.")
+    @Column(length = 9, unique = true, nullable = false, columnDefinition = "CHAR(9)")
     private String crm;
 
+    @NotBlank(message = "O nome do profissional não pode ficar em branco.")
     @Column(length = 80, nullable = false)
     private String nome;
 
+    @NotBlank(message = "O e-mail do profissional deve ser informado.")
+    @Email(message = "Um e-mail válido deve ser informado.")
     @Column(length = 100, nullable = false, unique = true)
     private String email;
 
+    @Length(min = 4, max = 24, message = "A senha deve ter entre {min} e {max} caracteres.")
     @Column(length = 64, nullable = false)
     private String senha;
 

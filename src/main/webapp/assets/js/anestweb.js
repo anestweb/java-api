@@ -39,6 +39,15 @@ window.addEventListener("load", function () {
                 value += (dig.length > 0) ? g3 + "-" : g3;
                 value += dig;
                 this.value = value;
+            },
+            crm: function () {
+                var value = this.value.toUpperCase().replace(/[^0-9A-Z]/g, "");
+                var matches = value.match(/^([0-9]{1,6})([A-Z]{1,2})?/);
+                if (matches) {
+                    this.value = matches[1] + (matches[2] ? "/" + matches[2] : "");
+                } else {
+                    this.value = "";
+                }
             }
         };
         var elFields = document.querySelectorAll("input[data-mask]");
