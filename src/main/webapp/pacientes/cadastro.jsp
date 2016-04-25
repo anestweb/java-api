@@ -40,14 +40,14 @@
                 <div class="field grid-10">
                     <label for="y1">Nome do Paciente</label>
                     <input type="text" id="y1" name="nome_completo"
-                           value="${paciente.getNomeCompleto()}" >
+                           value="${paciente.getNomeCompleto()}" required>
                 </div>
 
                 <div class="field grid-3">
                     <label for="y2">Data de Nascimento</label>
                     <input type="text" id="y2" name="data_nascimento"
                            value="${paciente.getDataNascimento()}"
-                           data-mask="data" 
+                           data-mask="data" required
                            pattern="^(?:0[1-9]|[12][0-9]|3[01])\/(?:0[1-9]|1[0-2])\/(?:19|20)[0-9]{2}$">
                 </div>
 
