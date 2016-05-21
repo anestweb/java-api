@@ -10,16 +10,16 @@
 
 <t:mainlayout>
 
-    <h1 class="pageheading">
-        Catálogo de Pacientes
-
-        <div class="right floated">
-            <a href="./pacientes/novo" class="primary button"><i class="fa fa-plus fa-fw"></i>Novo Paciente</a>
-        </div>
-    </h1>
+    <div class="right floated">
+        <a href="./pacientes/novo" class="primary button">
+            <i class="fa fa-plus fa-fw"></i>Novo Paciente
+        </a>
+    </div>
+    <h1 class="pageheading">Catálogo de Pacientes</h1>
     <table class="selectable">
         <thead>
             <tr>
+                <th class="compact"></th>
                 <th>Nome</th>
                 <th>Data de Nascimento</th>
                 <th class="">Gênero</th>
@@ -30,7 +30,7 @@
             <c:choose>
                 <c:when test="${pacientes.isEmpty()}">
                     <tr>
-                        <td colspan="4">
+                        <td colspan="5">
                             Não há paciente cadastrado para esta listagem.
                         </td>
                     </tr>
@@ -38,9 +38,13 @@
                 <c:otherwise>
                     <c:forEach items="${pacientes}" var="paciente">
                         <tr>
+                            <td class="nowrap">
+                                <a href="./pacientes/historico?id=${paciente.getId()}"
+                                   class="compact button"><i class="fa fa-stethoscope fa-fw"></i> prontuário</a>
+                            </td>
                             <td>${paciente.getNomeCompleto().toUpperCase()}</td>
                             <td>${paciente.getDataNascimento()} (${paciente.getIdade()} anos)</td>
-                            <td>${paciente.getGenero()}</td>
+                            <td>${paciente.getGenero().asString()}</td>
                             <td class="nowrap">
                                 <a href="./pacientes/edicao?id=${paciente.getId()}"
                                    class="compact button"><i class="fa fa-pencil fa-fw"></i> editar</a>

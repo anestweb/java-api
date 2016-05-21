@@ -10,13 +10,12 @@
 
 <t:mainlayout>
 
-    <h1 class="pageheading">
-        Catálogo de Profissionais
-
-        <div class="right floated">
-            <a href="./profissionais/novo" class="primary button"><i class="fa fa-plus fa-fw"></i>Novo Profissional</a>
-        </div>
-    </h1>
+    <div class="right floated">
+        <a href="./profissionais/novo" class="primary button">
+            <i class="fa fa-plus fa-fw"></i>Novo Profissional
+        </a>
+    </div>
+    <h1 class="pageheading">Catálogo de Profissionais</h1>
     <table class="selectable">
         <thead>
             <tr>

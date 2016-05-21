@@ -54,10 +54,9 @@
                 <div class="field grid-3">
                     <label for="sexo">Sexo</label>
                     <select name="sexo" id="sexo" required>
-                        <option value=""></option>
+                        <option value="O" ${genero == 'O' ? "selected" : ""}>Não declarado</option>
                         <option value="M" ${genero == 'M' ? "selected" : ""}>Masculino</option>
                         <option value="F" ${genero == 'F' ? "selected" : ""}>Feminino</option>
-                        <option value="O" ${genero == 'O' ? "selected" : ""}>Não informado</option>
                     </select>
                 </div>
             </div>

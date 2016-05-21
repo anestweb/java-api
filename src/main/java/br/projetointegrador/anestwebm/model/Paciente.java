@@ -2,11 +2,7 @@ package br.projetointegrador.anestwebm.model;
 
 import br.projetointegrador.anestwebm.util.DateUtil;
 import br.projetointegrador.anestwebm.util.StringUtil;
-import java.io.Serializable;
 import java.text.ParseException;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -54,7 +50,7 @@ public class Paciente extends AbstractModel {
 
     @NotNull(message = "Escolha uma opção de gênero.")
     @Enumerated(EnumType.ORDINAL)
-    private Genero genero = Genero.NAO_INFORMADO;
+    private Genero genero = Genero.NAO_DECLARADO;
 
     @Email(message = "O e-mail informado não é válido.")
     @Column(length = 100)
@@ -67,7 +63,7 @@ public class Paciente extends AbstractModel {
     public static enum Genero {
         MASCULINO('M'),
         FEMININO('F'),
-        NAO_INFORMADO('O');
+        NAO_DECLARADO('O');
 
         private final char opcao;
 
@@ -77,6 +73,28 @@ public class Paciente extends AbstractModel {
 
         public char asChar() {
             return this.opcao;
+        }
+
+        public String asHomemMulher() {
+            switch (opcao) {
+                case 'M':
+                    return "Homem";
+                case 'F':
+                    return "Mulher";
+                default:
+                    return "";
+            }
+        }
+
+        public String asString() {
+            switch (opcao) {
+                case 'M':
+                    return "MASCULINO";
+                case 'F':
+                    return "FEMININO";
+                default:
+                    return "NÃO DECLARADO";
+            }
         }
     }
 
@@ -149,7 +167,7 @@ public class Paciente extends AbstractModel {
                 break;
             case 'O':
             case 'o':
-                this.genero = Genero.NAO_INFORMADO;
+                this.genero = Genero.NAO_DECLARADO;
                 break;
             default:
                 throw new EnumConstantNotPresentException(Genero.class, String.valueOf(genero));

@@ -10,13 +10,12 @@
 
 <t:mainlayout>
 
-    <h1 class="pageheading">
-        Catálogo de Medicamentos
-
-        <div class="right floated">
-            <a href="./medicamentos/novo" class="primary button"><i class="fa fa-plus fa-fw"></i>Novo Medicamento</a>
-        </div>
-    </h1>
+    <div class="right floated">
+        <a href="./medicamentos/novo" class="primary button">
+            <i class="fa fa-plus fa-fw"></i>Novo Medicamento
+        </a>
+    </div>
+    <h1 class="pageheading">Catálogo de Medicamentos</h1>
     <table class="selectable">
         <thead>
             <tr>

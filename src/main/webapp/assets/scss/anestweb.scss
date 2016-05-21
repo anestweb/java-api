@@ -3,7 +3,6 @@
 // Cores
 @import 'cores';
 
-
 // Estrutura
 @import 'base';
 @import 'base-estrutura';
@@ -13,13 +12,13 @@
 // Estilos & Tipografia
 @import 'tipografia';
 
-
 // Componentes
 @import 'tabelas';
 @import 'form';
 @import 'mensagens';
 
-
 // Helpers
 @import 'helpers';
 
+// Impressão
+@import 'impressao'

@@ -1,0 +1,18 @@
+/* 
+    Created on : 20/05/2016, 23:43:29
+    Author     : Jonathan Souza <jonathan.ralison@gmail.com>
+*/
+
+.print-only { display: none; }
+
+@media print {
+    header, aside, .button, .noprint {
+        display: none !important;
+    }
+
+    #wrapper-main { margin-top: 0 !important; }
+
+    .print-only {
+        display: initial;
+    }
+}

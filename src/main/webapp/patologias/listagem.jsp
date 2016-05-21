@@ -10,13 +10,12 @@
 
 <t:mainlayout>
 
-    <h1 class="pageheading">
-        Catálogo de Patologias
-
-        <div class="right floated">
-            <a href="./patologias/novo" class="primary button"><i class="fa fa-plus fa-fw"></i>Nova Patologia</a>
-        </div>
-    </h1>
+    <div class="right floated">
+        <a href="./patologias/novo" class="primary button">
+            <i class="fa fa-plus fa-fw"></i>Nova Patologia
+        </a>
+    </div>
+    <h1 class="pageheading">Catálogo de Patologias</h1>
     <table class="selectable">
         <thead>
             <tr>

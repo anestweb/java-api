@@ -33,13 +33,14 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" type="text/css">
         <link rel="stylesheet" href="./assets/3rd/flaticon-medical/flaticon.css" type="text/css">
         <link rel="stylesheet" href="./assets/3rd/pace-1.0.0/pace.flat-top.css" media="screen" type="text/css">
-        <link rel="stylesheet" href="./assets/css/anestweb.css" media="screen" type="text/css">
+        <link rel="stylesheet" href="./assets/css/anestweb.css" media="screen,print" type="text/css">
     </head>
     <body>
         <div id="wrapper-all">
             <header>
-                <a href="./"><img src="./assets/img/applogo.png" alt="AnestWeb" class="applogo"></a>
-                <div class="options" controller="UsuarioCtrl">
+                <a href="./" class="noprint"><img src="./assets/img/applogo.png" alt="AnestWeb" class="applogo"></a>
+                <div class="print-only display-1">AnestWeb</div>
+                <div class="options">
                     <div class="userinfo item">
                         <i class="fa fa-user-md fa-fw fa-lg"></i> {{usuario.nome}}<br>
                         <small>CRM {{usuario.crm}}</small>
