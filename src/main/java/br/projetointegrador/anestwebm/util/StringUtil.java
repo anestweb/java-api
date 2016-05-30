@@ -1,8 +1,16 @@
 package br.projetointegrador.anestwebm.util;
 
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -57,6 +65,18 @@ public class StringUtil {
 
     public static Date stringToDate(String date) throws ParseException {
         return stringToDate(date, "dd/MM/yyyy");
+    }
+
+    public static String sha256(String text) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(text.getBytes(StandardCharsets.UTF_8));
+            byte[] digest = md.digest();
+            return String.format("%064x", new BigInteger(1, digest));
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(StringUtil.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 
 }

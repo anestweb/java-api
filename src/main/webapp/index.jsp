@@ -7,6 +7,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/"%>
 
-<t:mainlayout>
-    <h1>Bem-vindo</h1>
-</t:mainlayout>
+<jsp:forward page="/pacientes" />

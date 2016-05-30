@@ -41,20 +41,23 @@
                 <a href="./" class="noprint"><img src="./assets/img/applogo.png" alt="AnestWeb" class="applogo"></a>
                 <div class="print-only display-1">AnestWeb</div>
                 <div class="options">
-                    <div class="userinfo item">
-                        <i class="fa fa-user-md fa-fw fa-lg"></i> {{usuario.nome}}<br>
-                        <small>CRM {{usuario.crm}}</small>
-                    </div>
-<!--
-                    <div class="item">
-                        <a href="#/login" class="flat inverse button"><i class="fa fa-power-off fa-fw"></i> Sair</a>
-                    </div>
--->
+                    <c:if test="${conectado != null}">
+                        <div class="userinfo item">
+                            <i class="fa fa-user-md fa-fw fa-lg"></i> ${conectado.getNome().toUpperCase()}<br>
+                            <small>CRM ${conectado.getCrm()}</small>
+                        </div>
+                        <div class="item">
+                            <a href="./sair" class="flat inverse button"><i
+                                    class="fa fa-power-off fa-fw"></i> Sair</a>
+                        </div>
+                    </c:if>
                 </div>
             </header>
 
             <div id="wrapper-main">
-                <t:sidebar/>
+                <c:if test="${conectado != null}">
+                    <t:sidebar/>
+                </c:if>
 
                 <div class="page-content">
                     <jsp:doBody/>

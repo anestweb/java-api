@@ -1,5 +1,6 @@
 package br.projetointegrador.anestwebm.model;
 
+import br.projetointegrador.anestwebm.util.StringUtil;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -39,7 +40,7 @@ public class Profissional extends AbstractModel {
     @Column(length = 100, nullable = false, unique = true)
     private String email;
 
-    @Length(min = 4, max = 24, message = "A senha deve ter entre {min} e {max} caracteres.")
+    @Length(min = 4, message = "A senha deve ter no mínimo 4 caracteres.")
     @Column(length = 64, nullable = false)
     private String senha;
 
@@ -83,7 +84,7 @@ public class Profissional extends AbstractModel {
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
+        this.senha = StringUtil.sha256(senha);
     }
 
     public List<Local> getLocais() {
@@ -116,7 +117,7 @@ public class Profissional extends AbstractModel {
 
     @Override
     public String toString() {
-        return "Profissional{" + "id=" + id + ", crm=" + crm + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", locais=" + locais + '}';
+        return "Profissional{" + "id=" + id + ", crm=" + crm + ", nome=" + nome + ", email=" + email + ", locais=" + locais + '}';
     }
 
 }

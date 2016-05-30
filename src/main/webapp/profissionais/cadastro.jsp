@@ -57,8 +57,8 @@
             <div class="flex-row">
                 <div class="field grid-6">
                     <label for="y4">Senha</label>
-                    <input type="password" id="y4" name="senha" value="${profissional.getSenha()}"
-                           pattern=".{4,24}$" maxlength="16" required>
+                    <input type="password" id="y4" name="senha" value=""
+                           pattern=".{4,24}$" maxlength="24" required>
                 </div>
 <!--
                 <div class="field grid-8">

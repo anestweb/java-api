@@ -18,4 +18,6 @@ public interface Dao<T> {
 
     public void remove(T t);
 
+    public List<T> buscaPorAtributo(String campo, Object valor, int limite);
+
 }
