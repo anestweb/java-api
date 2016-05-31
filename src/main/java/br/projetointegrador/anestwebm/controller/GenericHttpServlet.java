@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public abstract class GenericHttpServlet extends HttpServlet {
 
+    private Profissional profissional_conectado = null;
+
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -21,8 +23,8 @@ public abstract class GenericHttpServlet extends HttpServlet {
         resp.setHeader("Pragma", "no-cache");
         resp.setDateHeader("Expires", 0);
 
-        Profissional profissional = (Profissional) req.getSession().getAttribute("conectado");
-        if (profissional == null) {
+        profissional_conectado = (Profissional) req.getSession().getAttribute("conectado");
+        if (profissional_conectado == null) {
             String contextPath = req.getContextPath();
             String currentURI = req.getRequestURI();
             String loginURI = contextPath + "/entrar";
@@ -32,9 +34,12 @@ public abstract class GenericHttpServlet extends HttpServlet {
                 resp.sendRedirect(loginURI);
             }
         } else {
-            req.setAttribute("conectado", profissional);
+            req.setAttribute("conectado", profissional_conectado);
             super.service(req, resp);
         }
     }
 
+    protected Profissional getProfissionalConectado() {
+        return profissional_conectado;
+    }
 }

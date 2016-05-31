@@ -4,6 +4,8 @@
     Author     : Jonathan Souza <jonathan.ralison@gmail.com>
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/" %>
 
@@ -29,17 +31,40 @@
     <table class="selectable">
         <thead>
             <tr>
-                <th class="center aligned">
+                <th class="center aligned" colspan="4">
                     AVALIAÇÕES REALIZADAS
                 </th>
             </tr>
+            <tr>
+                <th class="compact center aligned">Data</th>
+                <th class="">Cirurgia / Patologia</th>
+                <th class="">Procedimento Proposto</th>
+                <th class="compact">Opções</th>
+            </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>
-                    Não há informação cadastrada para esta listagem.
-                </td>
-            </tr>
+            <c:if test="${avaliacoes.size() == 0}">
+                <tr>
+                    <td colspan="4" class="center aligned secondary">
+                        Não há ficha de avaliação pré-anestésica registrada
+                        para este paciente.
+                    </td>
+                </tr>
+            </c:if>
+            <c:forEach items="${avaliacoes}" var="avaliacao">
+                <tr>
+                    <td>${avaliacao.getDataAvaliacao()}</td>
+                    <td>${avaliacao.getCirurgia()}</td>
+                    <td>${avaliacao.getProcedimento()}</td>
+                    <td class="nowrap">
+                        <a href="./pacientes/avaliacao/detalhes?id=${avaliacao.getId()}"
+                            class="compact button">abrir</a>
+                         <a href="./pacientes/avaliacao/exclusao?id=${avaliacao.getId()}"
+                            data-confirm="Remover a avaliação realizada em ${avaliacao.getDataAvaliacao()}?"
+                            class="compact button"><i class="fa fa-times fa-fw"></i></a>
+                    </td>
+                </tr>
+            </c:forEach>
         </tbody>
     </table>
 

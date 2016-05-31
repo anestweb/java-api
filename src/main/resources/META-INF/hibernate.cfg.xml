@@ -13,5 +13,6 @@
         <mapping class="br.projetointegrador.anestwebm.model.Patologia"/>
         <mapping class="br.projetointegrador.anestwebm.model.Profissional"/>
         <mapping class="br.projetointegrador.anestwebm.model.Local"/>
+        <mapping class="br.projetointegrador.anestwebm.model.Avaliacao"/>
     </session-factory>
 </hibernate-configuration>

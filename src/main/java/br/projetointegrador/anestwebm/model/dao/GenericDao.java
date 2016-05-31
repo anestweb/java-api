@@ -2,6 +2,7 @@ package br.projetointegrador.anestwebm.model.dao;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -51,7 +52,23 @@ public class GenericDao<T> implements Dao<T> {
     public List<T> buscaPorAtributo(String campo, Object valor, int limite) {
         Criteria crit = this.session.createCriteria(persistentClass)
                 .add(Restrictions.eqOrIsNull(campo, valor));
-        crit.setMaxResults(limite);
+        if (limite > 0) {
+            crit.setMaxResults(limite);
+        }
+        return crit.list();
+    }
+
+    @Override
+    public List<T> buscaPorAtributos(Map<String, Object> criterios, int limite) {
+        Criteria crit = this.session.createCriteria(persistentClass);
+        criterios.entrySet().stream().forEach((entry) -> {
+            String campo = entry.getKey();
+            Object valor = entry.getValue();
+            crit.add(Restrictions.eqOrIsNull(campo, valor));
+        });
+        if (limite > 0) {
+            crit.setMaxResults(limite);
+        }
         return crit.list();
     }
 

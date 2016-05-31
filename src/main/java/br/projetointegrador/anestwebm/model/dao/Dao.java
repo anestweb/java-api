@@ -2,6 +2,7 @@ package br.projetointegrador.anestwebm.model.dao;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -19,5 +20,7 @@ public interface Dao<T> {
     public void remove(T t);
 
     public List<T> buscaPorAtributo(String campo, Object valor, int limite);
+
+    public List<T> buscaPorAtributos(Map<String, Object> criterios, int limite);
 
 }

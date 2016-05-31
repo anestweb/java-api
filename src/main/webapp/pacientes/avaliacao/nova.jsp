@@ -4,6 +4,7 @@
     Author     : Jonathan Souza <jonathan.ralison@gmail.com>
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/" %>
 
@@ -14,6 +15,28 @@
           enctype="application/x-www-form-urlencoded"
           accept-charset="utf-8">
         <div class="form">
+
+            <c:if test="${error != null}">
+                <p class="message message-error">${error}</p>
+            </c:if>
+
+            <table>
+                <thead>
+                    <tr><th colspan="6" class="center aligned">RESUMO DA CONSULTA</th></tr>
+                </thead>
+            </table>
+            <div class="flex-row">
+                <div class="field grid-8">
+                    <label for="cirurgia">Cirurgia / Patologia</label>
+                    <input type="text" id="cirurgia" name="cirurgia" value=""
+                           required>
+                </div>
+                <div class="field grid-8">
+                    <label for="procedimento">Procedimento Proposto</label>
+                    <input type="text" id="procedimento" name="procedimento" value=""
+                           required>
+                </div>
+            </div>
 
             <table>
                 <thead>
@@ -28,17 +51,17 @@
 
                 <div class="field grid-2">
                     <label for="altura">Altura</label>
-                    <input type="text" id="altura" name="peso" value="">
+                    <input type="text" id="altura" name="altura" value="">
                 </div>
 
                 <div class="field grid-2">
                     <label for="pa">Pressão Arterial (PA)</label>
-                    <input type="text" id="pa" name="peso" value="">
+                    <input type="text" id="pa" name="pa" value="">
                 </div>
 
                 <div class="field grid-10">
                     <label for="palidez">Palidez</label>
-                    <input type="text" id="pa" name="palidez" value=""
+                    <input type="text" id="palidez" name="palidez" value=""
                            placeholder="hidratado/corado/eupnéico/etc.">
                 </div>
             </div>
@@ -66,15 +89,15 @@
                 </div>
 
                 <div class="field grid-5">
-                    <label for="pescoco">Flexão/Extensão do pescoço</label>
-                    <input type="text" id="pescoco" name="pescoco" value=""
+                    <label for="pescoco_flexao">Flexão/Extensão do pescoço</label>
+                    <input type="text" id="pescoco_flexao" name="pescoco_flexao" value=""
                            placeholder="normal/limitada">
                 </div>
             </div>
             <div class="flex-row">
                 <div class="field grid-1">
                     <label for="mallampati">Mallampati</label>
-                    <select name="mallampati" id="mallampati" required>
+                    <select name="mallampati" id="mallampati">
                         <option value=""></option>
                         <option value="I">I</option>
                         <option value="II">II</option>
@@ -96,8 +119,8 @@
             </table>
             <div class="flex-row">
                 <div class="field grid-16">
-                    <label for="y3">Anotações Complementares</label>
-                    <textarea id="" name="anotacoes"></textarea>
+                    <label for="anotacoes">Anotações Complementares</label>
+                    <textarea id="anotacoes" name="anotacoes"></textarea>
                 </div>
             </div>
         </div>

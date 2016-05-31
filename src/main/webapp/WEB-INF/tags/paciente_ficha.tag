@@ -11,7 +11,7 @@
     <thead>
         <tr>
             <th colspan="6" class="center aligned">
-                INFORMAÇÕES CADASTRADAS
+                INFORMAÇÕES DO PACIENTE
             </th>
         </tr>
     </thead>
